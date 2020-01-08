@@ -3,6 +3,9 @@ from ._skia.core cimport (
     SkPathFillType,
     SkPoint,
     SkScalar,
+    kSmall_ArcSize,
+    kLarge_ArcSize,
+    SkPathDirection,
     kMove_Verb,
     kLine_Verb,
     kQuad_Verb,
@@ -36,6 +39,18 @@ cpdef enum FillType:
     EVEN_ODD = <uint32_t>SkPathFillType.kEvenOdd
     INVERSE_WINDING = <uint32_t>SkPathFillType.kInverseWinding
     INVERSE_EVEN_ODD = <uint32_t>SkPathFillType.kInverseEvenOdd
+
+
+# https://skia.org/user/api/SkPath_Reference#SkPath_Direction
+cpdef enum PathDirection:
+    CLOCKWISE = <int>SkPathDirection.kCW
+    COUNTER_CLOCKWISE = <int>SkPathDirection.kCCW
+
+
+# https://skia.org/user/api/SkPath_Reference#SkPath_ArcSize
+cpdef enum ArcSize:
+    SMALL = kSmall_ArcSize
+    LARGE = kLarge_ArcSize
 
 
 cdef union FloatIntUnion:
@@ -106,6 +121,17 @@ cdef class Path:
         SkScalar y2,
         SkScalar x3,
         SkScalar y3,
+    )
+
+    cpdef void arcTo(
+        self,
+        SkScalar rx,
+        SkScalar ry,
+        SkScalar xAxisRotate,
+        ArcSize largeArc,
+        SkPathDirection sweep,
+        SkScalar x,
+        SkScalar y
     )
 
     cpdef void close(self)
@@ -179,6 +205,11 @@ cdef class PathPen:
     cpdef lineTo(self, pt)
 
     cpdef curveTo(self, pt1, pt2, pt3)
+
+    cpdef arcTo(self,
+                rx, ry,
+                xAxisRotate, largeArc, sweep,
+                x, y)
 
     # def qCurveTo(self, *points)
 

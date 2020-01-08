@@ -6,6 +6,8 @@ from pathops import (
     PathOp,
     PathVerb,
     FillType,
+    ArcSize,
+    PathDirection,
     bits2float,
     float2bits,
 )
@@ -116,6 +118,15 @@ class PathTest(object):
             # ('lineTo', ((100.0, 100.0),)),
             ('closePath', ())]
 
+    def test_arcTo(self):
+        path = Path()
+        pen = path.getPen()
+        pen.moveTo((75, 75))
+        pen.arcTo((100, 200, 0, 0, 0, 125, 75))
+        assert list(path.segments) == [
+            ('moveTo', ((100.0, 100.0),)),
+            # TODO fill in
+            ('closePath', ())]
 
 class OpBuilderTest(object):
 

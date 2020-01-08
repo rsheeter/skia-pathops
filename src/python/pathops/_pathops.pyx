@@ -205,6 +205,18 @@ cdef class Path:
     ):
         self.path.cubicTo(x1, y1, x2, y2, x3, y3)
 
+    cpdef void arcTo(
+        self,
+        SkScalar rx,
+        SkScalar ry,
+        SkScalar xAxisRotate,
+        ArcSize largeArc,
+        SkPathDirection sweep,
+        SkScalar x,
+        SkScalar y
+    ):
+        self.path.arcTo(rx, ry, xAxisRotate, largeArc, sweep, x, y)
+
     cpdef void close(self):
         self.path.close()
 
@@ -694,6 +706,12 @@ cdef class PathPen:
             pt1[0], pt1[1],
             pt2[0], pt2[1],
             pt3[0], pt3[1])
+
+    cpdef arcTo(self,
+                rx, ry,
+                xAxisRotate, largeArc, sweep,
+                x, y):
+        self.path.arcTo(rx, ry, xAxisRotate, largeArc, sweep, x, y)
 
     def qCurveTo(self, *points):
         for pt1, pt2 in decompose_quadratic_segment(points):

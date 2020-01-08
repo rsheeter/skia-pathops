@@ -12,6 +12,9 @@ cdef extern from "include/core/SkPathTypes.h":
         kInverseWinding "SkPathFillType::kInverseWinding",
         kInverseEvenOdd "SkPathFillType::kInverseEvenOdd"
 
+    enum SkPathDirection:
+        kCW "SkPathDirection::kCW"
+        kCCW "SkPathDirection::kCCW"
 
 cdef extern from "include/core/SkPath.h":
 
@@ -56,6 +59,11 @@ cdef extern from "include/core/SkPath.h":
         void conicTo(SkScalar x1, SkScalar y1, SkScalar x2, SkScalar y2,
                      SkScalar w)
         void conicTo(const SkPoint& p1, const SkPoint& p2, SkScalar w)
+
+        # https://skia.org/user/api/SkPath_Reference#SkPath_arcTo_4
+        void arcTo(SkScalar rx, SkScalar ry,
+                   SkScalar xAxisRotate, ArcSize largeArc, SkPathDirection sweep,
+                   SkScalar x, SkScalar y)
 
         void close()
 
@@ -130,6 +138,10 @@ cdef extern from * namespace "SkPath":
         kCubic_Verb,
         kClose_Verb,
         kDone_Verb
+
+    enum ArcSize:
+        kSmall_ArcSize,
+        kLarge_ArcSize
 
 
 cdef extern from "include/core/SkRect.h":
