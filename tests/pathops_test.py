@@ -122,7 +122,7 @@ class PathTest(object):
         path = Path()
         pen = path.getPen()
         pen.moveTo((75, 75))
-        pen.arcTo((100, 200, 0, 0, 0, 125, 75))
+        pen.arcTo(100, 200, 0, ArcSize.SMALL, PathDirection.CLOCKWISE, 125, 75)
         assert list(path.segments) == [
             ('moveTo', ((100.0, 100.0),)),
             # TODO fill in

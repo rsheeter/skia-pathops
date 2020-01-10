@@ -211,11 +211,11 @@ cdef class Path:
         SkScalar ry,
         SkScalar xAxisRotate,
         ArcSize largeArc,
-        SkPathDirection sweep,
+        PathDirection sweep,
         SkScalar x,
         SkScalar y
     ):
-        self.path.arcTo(rx, ry, xAxisRotate, largeArc, sweep, x, y)
+        self.path.arcTo(rx, ry, xAxisRotate, largeArc, <SkPathDirection>sweep, x, y)
 
     cpdef void close(self):
         self.path.close()

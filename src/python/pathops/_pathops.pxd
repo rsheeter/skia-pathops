@@ -129,7 +129,7 @@ cdef class Path:
         SkScalar ry,
         SkScalar xAxisRotate,
         ArcSize largeArc,
-        SkPathDirection sweep,
+        PathDirection sweep,
         SkScalar x,
         SkScalar y
     )

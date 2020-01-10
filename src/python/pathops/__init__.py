@@ -1,4 +1,5 @@
 from ._pathops import (
+    ArcSize,
     PathPen,
     Path,
     PathVerb,
@@ -7,6 +8,7 @@ from ._pathops import (
     op,
     simplify,
     OpBuilder,
+    PathDirection,
     PathOpsError,
     UnsupportedVerbError,
     OpenPathError,
